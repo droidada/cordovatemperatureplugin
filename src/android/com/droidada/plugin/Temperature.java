@@ -44,13 +44,14 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
       if (action.equals("checkTemperature")) {
-        return this.start();
+         this.start();
+         return true;
       }
   
       if (action.equals("isDeviceCompatible")) {
         return this.isDeviceCompatible();
       }
-      
+
       return false;
     }
   
