@@ -57,37 +57,18 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
 
       return false;
     }
-  
-    private void checkTemperature(String msg, CallbackContext callbackContext) {
-      if (msg == null || msg.length() == 0) { // PLUGIN WASN'T INITIALIZED PROPERLY
-        callbackContext.error("Empty message!");
-      } else {
-        Toast.makeText(cordova.getActivity(), msg, Toast.LENGTH_LONG).show();
-        
-        if (this.sensor != null) {
-          this.start();  
-        } else {
-            Toast.makeText(cordova.getActivity(), "No Ambient Temperature Sensor !", Toast.LENGTH_LONG).show();
-            callbackContext.error("Sorry this device doesn't have a Temperature Sensor :( ");
-        }
-      }
-  }
+
 
   public void isDeviceCompatible() {
-    let msg = "";
-    if(this.sensor != null) {
-      msg = "This device is compatible";
-    } else {
-      msg = "Sorry, this device doesn't have a temperature sensor";
-    }
-    this.callbackContext.success(msg);
+    String msg = this.sensor != null ? "This device is compatible" : "Sorry, this device doesn't have a temperature sensor";
+
     Toast.makeText(cordova.getActivity(), msg, Toast.LENGTH_LONG).show();
+    this.callbackContext.success(msg);
   }
 
-  public int start () {
-    Toast.makeText(cordova.getActivity(), "INSIDE START MTD. Status is  "+this.status , Toast.LENGTH_LONG).show();
+  public void start () {
     if ((this.status == RUNNING) || (this.status == STARTING)) {
-      return this.status;
+      return;
     }
     
     if(this.sensor != null) {
@@ -98,12 +79,11 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
 
     } else {
         this.status = ERROR_FAILED_TO_START;
+        this.stop();
+        Toast.makeText(cordova.getActivity(), "Sorry this device does not have a Temperature sensor" , Toast.LENGTH_LONG).show();
         this.callbackContext.error("Sorry this device does not have a Temperature sensor");
     }
-
-    return this.status;
   }
-
 
   public void stop () {
     if (this.status != STOPPED) {
@@ -123,9 +103,15 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
 
       if ((this.timeStamp - this.lastAccessTime) > this.TIMEOUT) {
           this.stop();
+          callbackContext.error("Sorry there was a timeout, please try again.");
+          return;
       }
 
-      callbackContext.success("Your current temperature is " + this.temperature);
+      String msg = "Your current temperature is " + this.temperature;
+
+      callbackContext.success(msg);
+      Toast.makeText(cordova.getActivity(), msg , Toast.LENGTH_LONG).show();
+
     } catch (Exception e) {
         e.printStackTrace();
         callbackContext.error("Sorry we encountered an issue. Please try again.");
