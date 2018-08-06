@@ -51,7 +51,8 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
       }
   
       if (action.equals("isDeviceCompatible")) {
-        return this.isDeviceCompatible();
+         this.isDeviceCompatible();
+         return true;
       }
 
       return false;
@@ -63,7 +64,7 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
       } else {
         Toast.makeText(cordova.getActivity(), msg, Toast.LENGTH_LONG).show();
         
-        if (this.isDeviceCompatible()) {
+        if (this.sensor != null) {
           this.start();  
         } else {
             Toast.makeText(cordova.getActivity(), "No Ambient Temperature Sensor !", Toast.LENGTH_LONG).show();
@@ -72,8 +73,15 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
       }
   }
 
-  public boolean isDeviceCompatible() {
-    return this.sensor != null;
+  public void isDeviceCompatible() {
+    let msg = "";
+    if(this.sensor != null) {
+      msg = "This device is compatible";
+    } else {
+      msg = "Sorry, this device doesn't have a temperature sensor";
+    }
+    this.callbackContext.success(msg);
+    Toast.makeText(cordova.getActivity(), msg, Toast.LENGTH_LONG).show();
   }
 
   public int start () {
@@ -87,8 +95,10 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
       this.lastAccessTime = System.currentTimeMillis();
       this.status = STARTING;
       Toast.makeText(cordova.getActivity(), "We're detecting the temperature of your surroundings...", Toast.LENGTH_LONG).show();
+
     } else {
         this.status = ERROR_FAILED_TO_START;
+        this.callbackContext.error("Sorry this device does not have a Temperature sensor");
     }
 
     return this.status;
