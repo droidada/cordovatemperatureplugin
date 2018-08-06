@@ -9,6 +9,6 @@ An Ionic cordova project more info here https://ionicframework.com/docs/pro/basi
 Android ONLY
 
 # Installation
-ionic cordova plugin add https://github.com/ModusCreateOrg/cordova-plugin-example
+ionic cordova plugin add https://github.com/droidada/cordovatemperatureplugin
 
 # Usage
