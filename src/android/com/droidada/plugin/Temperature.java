@@ -115,7 +115,7 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
       }
 
       callbackContext.success("Your current temperature is " + this.temperature);
-    } catch (JSONException e) {
+    } catch (Exception e) {
         e.printStackTrace();
         callbackContext.error("Sorry we encountered an issue. Please try again.");
     }
