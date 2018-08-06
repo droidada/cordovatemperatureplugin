@@ -4,13 +4,13 @@
         xmlns="http://apache.org/cordova/ns/plugins/1.0" 
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <name>TemperaturePlugin</name>
+    <name>Temperature</name>
     
-    <js-module name="TemperaturePlugin" src="www/TemperaturePlugin.js">
-        <clobbers target="cordova.plugins.TemperaturePlugin" />
+    <js-module name="Temperature" src="www/Temperature.js">
+        <clobbers target="cordova.plugins.Temperature" />
     </js-module>
 
-    <asset src="www/TemperaturePlugin.js" target="js/TemperaturePlugin.js"/>
+    <asset src="www/Temperature.js" target="js/Temperature.js"/>
 
     <engines>
         <engine name="cordova" version=">=3.4.0"/>
