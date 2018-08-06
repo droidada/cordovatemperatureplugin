@@ -43,6 +43,8 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+      this.callbackContext = callbackContext;
+
       if (action.equals("checkTemperature")) {
          this.start();
          return true;
@@ -75,11 +77,12 @@ public class Temperature extends CordovaPlugin implements SensorEventListener {
   }
 
   public int start () {
+    Toast.makeText(cordova.getActivity(), "INSIDE START MTD. Status is  "+this.status , Toast.LENGTH_LONG).show();
     if ((this.status == RUNNING) || (this.status == STARTING)) {
       return this.status;
     }
     
-    if(this.isDeviceCompatible()) {
+    if(this.sensor != null) {
       this.sensorManager.registerListener(this, this.sensor, SensorManager.SENSOR_DELAY_NORMAL);
       this.lastAccessTime = System.currentTimeMillis();
       this.status = STARTING;
