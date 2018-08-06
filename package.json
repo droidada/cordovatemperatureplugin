@@ -1,5 +1,5 @@
 {
-    "name": "temperatureplugin",
+    "name": "temperature",
     "version": "1.0.0",
     "description": "a cordova plugin to check temperature on android devices",
     "main": "index.js",
