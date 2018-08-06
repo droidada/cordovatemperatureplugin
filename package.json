@@ -1,0 +1,28 @@
+{
+    "name": "temperatureplugin",
+    "version": "1.0.0",
+    "description": "a cordova plugin to check temperature on android devices",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/droidada/cordovatemperatureplugin.git"
+    },
+    "keywords": [
+        "ionic",
+        "cordova",
+        "temperature",
+        "android"
+    ],
+    "engines": {
+        "cordova": ">=3.4.0"
+    },
+    "author": "Adaobi Frank",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/droidada/cordovatemperatureplugin/issues"
+    },
+    "homepage": "https://github.com/droidada/cordovatemperatureplugin#readme"
+}
