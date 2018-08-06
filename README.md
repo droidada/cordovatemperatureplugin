@@ -1,14 +1,14 @@
 
-# cordovatemperatureplugin
+# CordovaTemperaturePlugin
 An ionic cordova android plugin to detect temperature in surroundings 
 
-# requirements
+# Requirements
 An Ionic cordova project more info here https://ionicframework.com/docs/pro/basics/getting-started/
 
-# compatibility
+# Compatibility
 Android ONLY
 
-# installation
+# Installation
 ionic cordova plugin add https://github.com/ModusCreateOrg/cordova-plugin-example
 
-# usage
+# Usage
